@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="A portfolio for Alex Morgan, product designer and creative developer.">
+	<title>Alex Morgan | Product Designer & Creative Developer</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+	<style>
+		:root {
+			--ink: #171a18;
+			--muted: #68706b;
+			--dark: #111412;
+			--panel: #f4f6ef;
+			--line: #d9ded7;
+			--acid: #c9f36b;
+			--coral: #ff8d71;
+			--serif: Georgia, 'Times New Roman', serif;
+			--mono: 'DM Mono', monospace;
+		}
+
+		* { box-sizing: border-box; }
+		html { scroll-behavior: smooth; }
+		body {
+			margin: 0;
+			color: var(--ink);
+			background: #ffffff;
+			font-family: 'Manrope', sans-serif;
+			line-height: 1.5;
+		}
+		a { color: inherit; text-decoration: none; }
+		button { font: inherit; }
+		.shell { width: min(1180px, calc(100% - 48px)); margin: 0 auto; }
+
+		.topbar {
+			display: flex; align-items: center; justify-content: space-between;
+			padding: 24px 0; border-bottom: 1px solid var(--line);
+		}
+		.logo { font-weight: 800; letter-spacing: -.06em; font-size: 1.2rem; }
+		.logo span { color: var(--acid); }
+		.nav { display: flex; align-items: center; gap: 30px; font-size: .78rem; color: var(--muted); }
+		.nav a { transition: color .2s ease; }
+		.nav a:hover { color: var(--acid); }
+		.menu-button { display: none; background: none; border: 0; color: var(--ink); cursor: pointer; }
+
+		.hero {
+			min-height: 690px; display: grid; grid-template-columns: 1.2fr .8fr; gap: 60px;
+			align-items: center; padding: 78px 0 95px; position: relative; overflow: hidden;
+		}
+		.hero:before {
+			content: ''; position: absolute; width: 420px; height: 420px; border: 1px solid #394239;
+			border-radius: 50%; right: -120px; top: 90px; opacity: .65;
+		}
+		.eyebrow { color: var(--acid); font-family: var(--mono); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; }
+		h1 { font-size: clamp(3.8rem, 8.2vw, 7.6rem); line-height: .92; letter-spacing: -.09em; margin: 24px 0 30px; max-width: 760px; font-weight: 700; }
+		h1 em { color: var(--coral); font-family: var(--serif); font-weight: 400; letter-spacing: -.1em; }
+		.intro { max-width: 470px; color: var(--muted); font-size: 1.03rem; }
+		.hero-actions { display: flex; gap: 14px; margin-top: 38px; align-items: center; }
+		.button { display: inline-flex; align-items: center; gap: 12px; padding: 14px 20px; border: 1px solid var(--acid); color: var(--dark); background: var(--acid); font-size: .78rem; font-weight: 800; transition: transform .2s, background .2s; }
+		.button:hover { transform: translateY(-3px); background: #e0ff91; }
+		.button.ghost { color: var(--ink); background: transparent; border-color: var(--line); }
+		.button.ghost:hover { border-color: var(--ink); background: transparent; }
+		.hero-note { align-self: end; color: var(--muted); font-family: var(--mono); font-size: .68rem; line-height: 1.7; border-left: 1px solid var(--coral); padding-left: 18px; max-width: 210px; z-index: 1; }
+
+		.section { padding: 104px 0; border-top: 1px solid var(--line); }
+		.section-heading { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 44px; }
+		.section-heading h2 { margin: 0; font-size: clamp(2.2rem, 5vw, 4.2rem); letter-spacing: -.075em; line-height: 1; }
+		.section-heading p { color: var(--muted); font-family: var(--mono); font-size: .7rem; }
+
+		.project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+		.project { background: var(--panel); border: 1px solid var(--line); min-height: 450px; display: flex; flex-direction: column; transition: transform .25s ease, border-color .25s ease; }
+		.project:hover { transform: translateY(-7px); border-color: #59655a; }
+		.project-visual { min-height: 275px; display: flex; align-items: center; justify-content: center; padding: 30px; position: relative; overflow: hidden; }
+		.visual-one { background: #ccd4bd; }
+		.visual-two { background: #e88067; }
+		.visual-three { background: #d8d1c1; }
+		.visual-four { background: #96b3b0; }
+		.visual-label { position: absolute; left: 18px; top: 16px; color: #162018; font-family: var(--mono); font-size: .62rem; }
+		.shape { width: 145px; height: 170px; background: #172019; transform: rotate(-10deg); box-shadow: 28px 20px 0 rgba(255,255,255,.35); }
+		.shape.round { border-radius: 50%; width: 190px; height: 190px; background: #21262a; box-shadow: 20px 15px 0 #f5df82; }
+		.shape.type { width: auto; height: auto; background: none; box-shadow: none; color: #24201c; font-size: 6rem; font-weight: 800; letter-spacing: -.15em; transform: rotate(-8deg); }
+		.shape.lines { width: 240px; height: 170px; background: repeating-linear-gradient(0deg, #15312d 0 11px, transparent 11px 22px); transform: rotate(6deg); box-shadow: none; }
+		.project-info { padding: 24px; display: flex; justify-content: space-between; gap: 20px; flex: 1; }
+		.project h3 { margin: 0 0 6px; font-size: 1.1rem; letter-spacing: -.03em; }
+		.project p { margin: 0; color: var(--muted); font-size: .78rem; }
+		.tag { color: var(--acid); font-family: var(--mono); font-size: .62rem; white-space: nowrap; }
+
+		.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 90px; }
+		.about-copy { font-family: var(--serif); font-size: clamp(1.8rem, 3.2vw, 3rem); line-height: 1.1; letter-spacing: -.045em; }
+		.about-copy .accent { color: var(--coral); }
+		.skills { display: grid; grid-template-columns: 1fr 1fr; gap: 0 30px; align-content: center; }
+		.skill { padding: 17px 0; border-bottom: 1px solid var(--line); color: var(--muted); font-size: .82rem; display: flex; justify-content: space-between; }
+		.skill span { color: var(--acid); font-family: var(--mono); font-size: .65rem; }
+
+		.contact { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; }
+		.contact h2 { margin: 0; font-size: clamp(3rem, 7vw, 6.5rem); line-height: .9; letter-spacing: -.1em; }
+		.contact h2 em { font-family: var(--serif); color: var(--coral); font-weight: 400; }
+		.contact-details { color: var(--muted); font-size: .9rem; }
+		.contact-details a { display: inline-block; color: var(--acid); margin-top: 18px; border-bottom: 1px solid var(--acid); padding-bottom: 4px; }
+		footer { padding: 24px 0 34px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; color: var(--muted); font-family: var(--mono); font-size: .65rem; }
+
+		.reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+		.reveal.visible { opacity: 1; transform: translateY(0); }
+		@media (max-width: 700px) {
+			.shell { width: min(100% - 32px, 560px); }
+			.topbar { padding: 18px 0; }
+			.menu-button { display: block; font-family: var(--mono); font-size: .72rem; }
+			.nav { display: none; position: absolute; left: 16px; right: 16px; top: 70px; padding: 16px; background: var(--panel); border: 1px solid var(--line); z-index: 5; flex-direction: column; align-items: flex-start; }
+			.nav.open { display: flex; }
+			.hero { min-height: 610px; grid-template-columns: 1fr; gap: 40px; padding: 68px 0 72px; }
+			.hero:before { width: 300px; height: 300px; right: -170px; top: 210px; }
+			.hero-note { align-self: start; }
+			.project-grid, .about-grid, .contact { grid-template-columns: 1fr; gap: 38px; }
+			.project { min-height: 0; }
+			.project-visual { min-height: 225px; }
+			.section { padding: 72px 0; }
+			.section-heading { display: block; margin-bottom: 28px; }
+			.section-heading p { margin-top: 12px; }
+			.skills { gap: 0 18px; }
+			footer { gap: 20px; flex-direction: column; }
+		}
+	</style>
+</head>
+<body>
+	<header class="shell topbar">
+		<a class="logo" href="#top">AM<span>.</span></a>
+		<button class="menu-button" aria-controls="site-nav" aria-expanded="false">MENU</button>
+		<nav class="nav" id="site-nav" aria-label="Main navigation">
+			<a href="#work">Work</a>
+			<a href="#about">About</a>
+			<a href="#contact">Contact</a>
+		</nav>
+	</header>
+
+	<main id="top">
+		<section class="shell hero">
+			<div class="reveal">
+				<div class="eyebrow">Independent designer / developer</div>
+				<h1>Ideas made <em>visible.</em></h1>
+				<p class="intro">I am Alex Morgan, a product designer and creative developer building clear, characterful digital experiences for people with something worth saying.</p>
+				<div class="hero-actions">
+					<a class="button" href="#work">See selected work <span aria-hidden="true">&#8599;</span></a>
+					<a class="button ghost" href="#contact">Let's talk</a>
+				</div>
+			</div>
+			<p class="hero-note reveal">Currently working from London, UK<br><br>Available for select projects in 2025</p>
+		</section>
+
+		<section class="shell section" id="work">
+			<div class="section-heading reveal"><h2>Selected work</h2><p>01 / 04</p></div>
+			<div class="project-grid">
+				<article class="project reveal">
+					<div class="project-visual visual-one"><span class="visual-label">01 / BRAND PLATFORM</span><div class="shape"></div></div>
+					<div class="project-info"><div><h3>Field Notes</h3><p>A new identity for modern makers.</p></div><span class="tag">2024</span></div>
+				</article>
+				<article class="project reveal">
+					<div class="project-visual visual-two"><span class="visual-label">02 / DIGITAL PRODUCT</span><div class="shape round"></div></div>
+					<div class="project-info"><div><h3>Orbit Finance</h3><p>Making money feel more human.</p></div><span class="tag">2024</span></div>
+				</article>
+				<article class="project reveal">
+					<div class="project-visual visual-three"><span class="visual-label">03 / ART DIRECTION</span><div class="shape type">Aa</div></div>
+					<div class="project-info"><div><h3>New Rituals</h3><p>Editorial direction for a culture journal.</p></div><span class="tag">2023</span></div>
+				</article>
+				<article class="project reveal">
+					<div class="project-visual visual-four"><span class="visual-label">04 / WEB EXPERIENCE</span><div class="shape lines"></div></div>
+					<div class="project-info"><div><h3>Common Ground</h3><p>A digital home for shared futures.</p></div><span class="tag">2023</span></div>
+				</article>
+			</div>
+		</section>
+
+		<section class="shell section" id="about">
+			<div class="section-heading reveal"><h2>A little about me</h2><p>THE PERSON BEHIND THE PIXELS</p></div>
+			<div class="about-grid">
+				<p class="about-copy reveal">Good work lives somewhere between <span class="accent">empathy</span>, a sharp point of view, and knowing when to stop.</p>
+				<div class="skills reveal">
+					<div class="skill">Art direction <span>01</span></div><div class="skill">Prototyping <span>02</span></div>
+					<div class="skill">Identity systems <span>03</span></div><div class="skill">Creative code <span>04</span></div>
+					<div class="skill">Product strategy <span>05</span></div><div class="skill">Motion design <span>06</span></div>
+				</div>
+			</div>
+		</section>
+
+		<section class="shell section contact" id="contact">
+			<h2 class="reveal">Have a good<br><em>feeling?</em></h2>
+			<div class="contact-details reveal">I am always interested in thoughtful collaborations, ambitious products, and ideas that need a little shape.<br><a href="mailto:hello@alexmorgan.design">hello@alexmorgan.design &#8599;</a></div>
+		</section>
+	</main>
+
+	<footer class="shell"><span>Alex Morgan &copy; 2025</span><span>Designing with intent</span><span><a href="#top">Back to top &#8593;</a></span></footer>
+
+	<script>
+		const menuButton = document.querySelector('.menu-button');
+		const nav = document.querySelector('.nav');
+		menuButton.addEventListener('click', () => {
+			const isOpen = nav.classList.toggle('open');
+			menuButton.setAttribute('aria-expanded', isOpen);
+		});
+
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add('visible');
+					observer.unobserve(entry.target);
+				}
+			});
+		}, { threshold: 0.12 });
+		document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
+	</script>
+</body>
+</html>
